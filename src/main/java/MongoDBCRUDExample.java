@@ -50,6 +50,8 @@ public class MongoDBCRUDExample {
 
         //MongoCollection bands = database.getCollection("testdb");
 
+//******************************************************************************
+
         DB db = null;
 
         DBCollection bands = db.getCollection("testdb");
@@ -67,25 +69,25 @@ public class MongoDBCRUDExample {
         band.put("albums", albums1);
         bands.insert(band);
         // Mapreduce
-        //m.runMapReduce(bands);
+        c.runMapReduce(bands);
 
-        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
-                "function(){ " +
-                        "for (var album in this.albums) { " +
-                        "emit({band: this.name}, 1); " +
-                        "} " +
-                        "}",
-                "function(key, values){ " +
-                        "var sum = 0; " +
-                        "for (var i in values) { " +
-                        "sum += values[i]; " +
-                        "} " +
-                        "return sum; }",
-                null, MapReduceCommand.OutputType.INLINE, null));
-        System.out.println("Mapreduce results");
-        for (DBObject o : out.results()) {
-            System.out.println(o.toString());
-        }
+//        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
+//                "function(){ " +
+//                        "for (var album in this.albums) { " +
+//                        "emit({band: this.name}, 1); " +
+//                        "} " +
+//                        "}",
+//                "function(key, values){ " +
+//                        "var sum = 0; " +
+//                        "for (var i in values) { " +
+//                        "sum += values[i]; " +
+//                        "} " +
+//                        "return sum; }",
+//                null, MapReduceCommand.OutputType.INLINE, null));
+//        System.out.println("Mapreduce results");
+//        for (DBObject o : out.results()) {
+//            System.out.println(o.toString());
+//        }
 
 
 
