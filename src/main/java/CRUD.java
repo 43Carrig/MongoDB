@@ -1,6 +1,5 @@
-import java.util.List;
-
 import com.mongodb.*;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
@@ -8,36 +7,25 @@ import com.mongodb.client.FindIterable;
 
 public class CRUD {
 
-//    private final static String HOST = "localhost";
-//    private final static int  PORT = 27017;
-//    private final static String DATABASE = "mydb";
-//    private final static String USER = "user";
-//    private final static String PASSWORD = "abc123";
-
      MongoClient mongoClient = null;
      MongoDatabase _db = null;
      String DATABASE = "testdb";
 
-//    private MongoCredential mongoCredential;
-//    private MongoClient mongoClient;
-
-
+    MongoDatabase database = mongoClient.getDatabase("testdb");
 
     public CRUD(MongoClient mongoClient, MongoDatabase database) {
-     //   mongoCredential = MongoCredential.createCredential(USER, DATABASE, PASSWORD.toCharArray());
-//        mongoClient = new MongoClient(new ServerAddress(HOST, PORT), Arrays.asList(mongoCredential));
-
         this.mongoClient = mongoClient;
         this._db = database;
     }
 
-    public void create(String title, String isbn,
-                       List<String> authors, List<String> category) {
+    public void create(String studentName, String tnumber, String course ) {
         try {
             mongoClient.getDatabase(DATABASE)
-                    .getCollection("library").insertOne(new Document()
-                    .append("tite", title).append("isbn", isbn)
-                    .append("authors", authors).append("category", category));
+                    .getCollection("students")
+                    .insertOne(new Document()
+                    .append("Student Name", studentName)
+                    .append("tnumber", tnumber)
+                    .append("Course", course));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -47,7 +35,7 @@ public class CRUD {
         try {
             FindIterable<Document> iter = mongoClient
                     .getDatabase(DATABASE)
-                    .getCollection("library").find();
+                    .getCollection("students").find();
 
             iter.forEach(new Block<Document>() {
                 @Override
@@ -61,27 +49,92 @@ public class CRUD {
         }
     }
 
-    public void updateCategory(String isbn, List<String> category) {
+    public void updateCategory(String tnumber, String course) {
 
         try {
-            mongoClient.getDatabase(DATABASE).getCollection("library")
-                    .updateOne(new Document("isbn", isbn),
-                            new Document("$set", new Document("category", category)));
+            mongoClient.getDatabase(DATABASE).getCollection("students")
+                    .updateOne(new Document("tnumber", tnumber),
+                            new Document("$set", new Document("Course", course)));
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void delete(String isbn) {
+    public void delete(String tnumber) {
 
         try {
-            mongoClient.getDatabase(DATABASE).getCollection("library")
-                    .deleteOne(new Document("isbn", isbn));
+            mongoClient.getDatabase(DATABASE).getCollection("students")
+                    .deleteOne(new Document("tnumber", tnumber));
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
+
+    //**********
+
+
+    DB db = null;
+
+
+    //MongoCollection properties = database.getCollection("testdb");
+
+    //MongoCollection<Document> properties = new MongoClient().getDatabase("Database").getCollection("collection");
+
+    DBCollection properties = db.getCollection("testdb");
+
+    String tnumber = "";
+
+    String map = "function() { "+
+            "var houseCategory; " +
+            "if ( this.county == "+ tnumber +  ") "+
+            "emit(houseCategory, {houseId: this.houseId});}";
+
+    public void runMapReduce(DBCollection bands){
+//        MapReduceOutput out = bands.mapReduce(new MapReduceCommand( properties,
+//                "function(){ " +
+//                        "for (var album in this.albums) { " +
+//                        "emit({band: this.name}, 1); " +
+//                        "} " +
+//                        "}",
+//                "function(key, values){ " +
+//                        "var sum = 0; " +
+//                        "for (var i in values) { " +
+//                        "sum += values[i]; " +
+//                        "} " +
+//                        "return sum; }",
+//                null, MapReduceCommand.OutputType.INLINE, null));
+
+        String reduce = "function( key, values) { " +
+                "var num = 0; " +
+                "values.forEach(function(doc) { " +
+                "num += 1; " + " }); " +
+                "return {properties: num};}";
+
+        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
+                "function(){ " +
+                        "for (var album in this.albums) { " +
+                        "emit({band: this.name}, 1); " +
+                        "} " +
+                        "}",
+                "function(key, values){ " +
+                        "var sum = 0; " +
+                        "for (var i in values) { " +
+                        "sum += values[i]; " +
+                        "} " +
+                        "return sum; }",
+                null, MapReduceCommand.OutputType.INLINE, null));
+
+
+        //MapReduceCommand cmd = new MapReduceCommand(properties, map, reduce, null, MapReduceCommand.OutputType.INLINE, null);
+        //MapReduceOutput out = properties.mapReduce(cmd);
+
+        System.out.println("Mapreduce results");
+        for (DBObject o : out.results()) {
+            System.out.println(o.toString());
+        }
+    }
+
 
 }
