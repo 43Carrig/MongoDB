@@ -1,7 +1,5 @@
 import com.mongodb.*;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
 // Don't forget to run mongo in command line - C:\Program Files\MongoDB\Server\4.0\bin
 
@@ -14,7 +12,7 @@ public class MongoDBCRUDExample {
 
         Mongo m = null;
 
-        CRUD c = new CRUD(mongoClient, database);
+        mongoCRUD c = new mongoCRUD(mongoClient, database);
 
         //
 
