@@ -5,7 +5,7 @@ import org.bson.Document;
 
 import com.mongodb.client.FindIterable;
 
-public class mongoCRUD {
+public class MongoCRUD {
 
      MongoClient mongoClient = null;
      MongoDatabase _db = null;
@@ -13,7 +13,7 @@ public class mongoCRUD {
 
     MongoDatabase database = mongoClient.getDatabase("testdb");
 
-    public mongoCRUD(MongoClient mongoClient, MongoDatabase database) {
+    public MongoCRUD(MongoClient mongoClient, MongoDatabase database) {
         this.mongoClient = mongoClient;
         this._db = database;
     }

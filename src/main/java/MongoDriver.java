@@ -3,7 +3,7 @@ import com.mongodb.client.MongoDatabase;
 
 // Don't forget to run mongo in command line - C:\Program Files\MongoDB\Server\4.0\bin
 
-public class MongoDBCRUDExample {
+public class MongoDriver {
     public static void main(String[] args) {
 
         MongoClient mongoClient = new MongoClient("localhost", 27017);
@@ -12,7 +12,7 @@ public class MongoDBCRUDExample {
 
         Mongo m = null;
 
-        mongoCRUD c = new mongoCRUD(mongoClient, database);
+        MongoCRUD c = new MongoCRUD(mongoClient, database);
 
         //
 
