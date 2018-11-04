@@ -1,5 +1,4 @@
 import com.mongodb.*;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
@@ -9,33 +8,50 @@ public class MongoCRUD {
 
      MongoClient mongoClient = null;
      MongoDatabase _db = null;
-     String DATABASE = "testdb";
+     String DATABASE = "testCarDb";
 
-    MongoDatabase database = mongoClient.getDatabase("testdb");
+    //MongoDatabase database = mongoClient.getDatabase("testdb");
+
+    public MongoCRUD() {
+
+    }
 
     public MongoCRUD(MongoClient mongoClient, MongoDatabase database) {
         this.mongoClient = mongoClient;
         this._db = database;
     }
 
-    public void create(String studentName, String tnumber, String course ) {
+    public void addCar(String carId, String carRegistration, String sold, String carMake, String carModel, String year,
+                       String price, String fuelType, String engineSizeCC, String transmission, String color, String numberOfDoors) { //addCar/ post/ create
         try {
             mongoClient.getDatabase(DATABASE)
-                    .getCollection("students")
+                    .getCollection("cars")
                     .insertOne(new Document()
-                    .append("Student Name", studentName)
-                    .append("tnumber", tnumber)
-                    .append("Course", course));
+                    .append("Car ID", carId)
+                    .append("Car Registration", carRegistration)
+                    .append("Sold (True/False)", sold)
+                    .append("Car Make", carMake)
+                    .append("Car Model", carModel)
+                    .append("Year", year)
+                    .append("Price", price)
+                    .append("Fuel Type", fuelType)
+                    .append("EngineSizeCC", engineSizeCC)
+                    .append("Transmission",transmission)
+                    .append("Color", color)
+                    .append("Number Of Doors", numberOfDoors));
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void readAll() {
+
+
+    public void getCarById(String carId) { //read/ getCarById/ get
         try {
             FindIterable<Document> iter = mongoClient
                     .getDatabase(DATABASE)
-                    .getCollection("students").find();
+                    .getCollection("cars").find(new Document("Car ID", carId));
 
             iter.forEach(new Block<Document>() {
                 @Override
@@ -49,7 +65,7 @@ public class MongoCRUD {
         }
     }
 
-    public void updateCategory(String tnumber, String course) {
+    public void updateCarDetails(String tnumber, String course) { //updateCarDetails / put / update
 
         try {
             mongoClient.getDatabase(DATABASE).getCollection("students")
@@ -61,7 +77,7 @@ public class MongoCRUD {
         }
     }
 
-    public void delete(String tnumber) {
+    public void deleteCar(String tnumber) {
 
         try {
             mongoClient.getDatabase(DATABASE).getCollection("students")
@@ -75,36 +91,36 @@ public class MongoCRUD {
     //**********
 
 
-    DB db = null;
+//    DB db = null;
 
 
     //MongoCollection properties = database.getCollection("testdb");
 
     //MongoCollection<Document> properties = new MongoClient().getDatabase("Database").getCollection("collection");
 
-    DBCollection properties = db.getCollection("testdb");
+//    DBCollection properties = db.getCollection("testdb");
 
-    String tnumber = "";
-
-    public void runMapReduce(DBCollection bands){
-        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
-                "function(){ " +
-                        "for (var album in this.albums) { " +
-                        "emit({band: this.name}, 1); " +
-                        "} " +
-                        "}",
-                "function(key, values){ " +
-                        "var sum = 0; " +
-                        "for (var i in values) { " +
-                        "sum += values[i]; " +
-                        "} " +
-                        "return sum; }",
-                null, MapReduceCommand.OutputType.INLINE, null));
-        System.out.println("Mapreduce results");
-        for (DBObject o : out.results()) {
-            System.out.println(o.toString());
-        }
-    }
+//    String tnumber = "";
+//
+//    public void runMapReduce(DBCollection bands){
+//        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
+//                "function(){ " +
+//                        "for (var album in this.albums) { " +
+//                        "emit({band: this.name}, 1); " +
+//                        "} " +
+//                        "}",
+//                "function(key, values){ " +
+//                        "var sum = 0; " +
+//                        "for (var i in values) { " +
+//                        "sum += values[i]; " +
+//                        "} " +
+//                        "return sum; }",
+//                null, MapReduceCommand.OutputType.INLINE, null));
+//        System.out.println("Mapreduce results");
+//        for (DBObject o : out.results()) {
+//            System.out.println(o.toString());
+//        }
+//    }
 
 //    String map = "function() { "+
 //            "var houseCategory; " +

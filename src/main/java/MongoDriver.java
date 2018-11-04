@@ -8,35 +8,57 @@ public class MongoDriver {
 
         MongoClient mongoClient = new MongoClient("localhost", 27017);
 
-        MongoDatabase database = mongoClient.getDatabase("testdb");
-
-        Mongo m = null;
+        MongoDatabase database = mongoClient.getDatabase("testCarDb");
 
         MongoCRUD c = new MongoCRUD(mongoClient, database);
 
-        //
-
         System.out.println("First read all");
-        c.readAll();
+//        c.getCarById();
 
-        c.create("Sean Byrne", "t00143447", "Software Development");
-
-        c.create("Declan Buckley", "t00143448", "Business Studies");
-
-        c.create("Barry Keane", "t00143449", "Business Studies");
+//        //because of static - can't use
+//        c.addCar("1", "161-D-2261", "True", "Ford", "Fiesta", "2016", "20000", "Petrol", "1600", "Automatic", "Blue", "5");
+//        c.addCar("2", "151-D-2261", "False", "Opel", "Astra", "2015", "20000", "Petrol", "1800", "Automatic", "Black", "4");
+//
 
         System.out.println("Second read all");
-        c.readAll();
+        c.getCarById("2");
 
-        c.updateCategory("t00143448", "Software Development");
+//        c.addCar("Declan Buckley", "t00143448", "Business Studies");
+//
+//        c.addCar("Barry Keane", "t00143449", "Business Studies");
 
-        System.out.println("Third read all");
-        c.readAll();
+//        Car car = new Car();
+//
+//        car.set_id("1");
+//        car.setSold(Boolean.valueOf("True"));
+//        car.setRegistration("12-D-265162");
+//        car.setCarMake("Audi");
+//        car.setCarModel("A4");
+//        car.setYear("2018");
+//        car.setPrice("50000");
+//        car.setFuelType("Petrol");
+//        car.setEngineSizeCC("3000");
+//        car.setTransmission("Automatic");
+//        car.setColor("Red");
+//        car.setNumberOfDoors("4");
+//
+//        MongoCRUD.addCar(car);
 
-        c.delete("t00143448");
+//******************************************************************
 
-        System.out.println("Fourth read all");
-        c.readAll();
+
+//        System.out.println("Second read all");
+//        c.getCarById();
+//
+//        c.updateCarDetails("t00143448", "Software Development");
+//
+//        System.out.println("Third read all");
+//        c.getCarById();
+//
+//        c.deleteCar("t00143448");
+//
+//        System.out.println("Fourth read all");
+//        c.getCarById();
 
 
 
@@ -50,24 +72,27 @@ public class MongoDriver {
 
 //******************************************************************************
 
-        DB db = null;
+//        DB db = null;
+//
+//        DBCollection bands = db.getCollection("testdb");
+//
+//        // Populate collection to perform Mapreduce
+//        //DBCollection bands = db.getCollection("bands");
+//        BasicDBObject band = new BasicDBObject();
+//        band.put("name", "U2");
+//        String albums[] = {"The Joshua Tree", "War", "Achtung Baby"};
+//        band.put("albums", albums);
+//        bands.insert(band);
+//        band = new BasicDBObject();
+//        band.put("name", "The Beatles");
+//        String albums1[] = {"Abbey Road", "Let It Be"};
+//        band.put("albums", albums1);
+//        bands.insert(band);
+//        // Mapreduce
+//        c.runMapReduce(bands);
 
-        DBCollection bands = db.getCollection("testdb");
+//******************************************************************************
 
-        // Populate collection to perform Mapreduce
-        //DBCollection bands = db.getCollection("bands");
-        BasicDBObject band = new BasicDBObject();
-        band.put("name", "U2");
-        String albums[] = {"The Joshua Tree", "War", "Achtung Baby"};
-        band.put("albums", albums);
-        bands.insert(band);
-        band = new BasicDBObject();
-        band.put("name", "The Beatles");
-        String albums1[] = {"Abbey Road", "Let It Be"};
-        band.put("albums", albums1);
-        bands.insert(band);
-        // Mapreduce
-        c.runMapReduce(bands);
 
 //        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
 //                "function(){ " +
