@@ -1,4 +1,5 @@
 import com.mongodb.*;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
@@ -90,20 +91,72 @@ public class MongoCRUD {
 
     //**********
 
+    public void mapReduce()
+    {
+        String map = "function () {" +
+                "emit('carId',{count:1}); " +
+                "}";
 
-//    DB db = null;
+        String reduce = "function(key, values) { " +
+                " return sum(values);" +
+                "}";
+        MongoClient myclient = new MongoClient("localhost", 27017);
+        MongoDatabase database = myclient.getDatabase("testCarDb");
+
+        ////////////
+        DB db = null;
+        //////////////
+
+        MongoCollection collection = (MongoCollection) database.getCollection("cars").mapReduce(map, reduce);
+        //.mapReduce(map, reduce);
 
 
-    //MongoCollection properties = database.getCollection("testdb");
+        System.out.println(collection.toString());
 
-    //MongoCollection<Document> properties = new MongoClient().getDatabase("Database").getCollection("collection");
+    }
 
-//    DBCollection properties = db.getCollection("testdb");
 
-//    String tnumber = "";
-//
-//    public void runMapReduce(DBCollection bands){
-//        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
+    //**********
+
+
+    DB db = null;
+
+
+    MongoCollection properties = database.getCollection("testdb");
+
+    MongoCollection<Document> properties = new MongoClient().getDatabase("Database").getCollection("collection");
+
+    DBCollection properties = db.getCollection("testdb");
+
+    String tnumber = "";
+
+    public void runMapReduce(DBCollection bands){
+        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
+                "function(){ " +
+                        "for (var album in this.albums) { " +
+                        "emit({band: this.name}, 1); " +
+                        "} " +
+                        "}",
+                "function(key, values){ " +
+                        "var sum = 0; " +
+                        "for (var i in values) { " +
+                        "sum += values[i]; " +
+                        "} " +
+                        "return sum; }",
+                null, MapReduceCommand.OutputType.INLINE, null));
+        System.out.println("Mapreduce results");
+        for (DBObject o : out.results()) {
+            System.out.println(o.toString());
+        }
+    }
+
+    String map = "function() { "+
+            "var houseCategory; " +
+            "if ( this.county == "+ tnumber +  ") "+
+            "emit(houseCategory, {houseId: this.houseId});}";
+
+    public void runMapReduce(DBCollection bands){
+//        MapReduceOutput out = bands.mapReduce(new MapReduceCommand( properties,
 //                "function(){ " +
 //                        "for (var album in this.albums) { " +
 //                        "emit({band: this.name}, 1); " +
@@ -116,61 +169,36 @@ public class MongoCRUD {
 //                        "} " +
 //                        "return sum; }",
 //                null, MapReduceCommand.OutputType.INLINE, null));
-//        System.out.println("Mapreduce results");
-//        for (DBObject o : out.results()) {
-//            System.out.println(o.toString());
-//        }
-//    }
 
-//    String map = "function() { "+
-//            "var houseCategory; " +
-//            "if ( this.county == "+ tnumber +  ") "+
-//            "emit(houseCategory, {houseId: this.houseId});}";
-//
-//    public void runMapReduce(DBCollection bands){
-////        MapReduceOutput out = bands.mapReduce(new MapReduceCommand( properties,
-////                "function(){ " +
-////                        "for (var album in this.albums) { " +
-////                        "emit({band: this.name}, 1); " +
-////                        "} " +
-////                        "}",
-////                "function(key, values){ " +
-////                        "var sum = 0; " +
-////                        "for (var i in values) { " +
-////                        "sum += values[i]; " +
-////                        "} " +
-////                        "return sum; }",
-////                null, MapReduceCommand.OutputType.INLINE, null));
-//
-//        String reduce = "function( key, values) { " +
-//                "var num = 0; " +
-//                "values.forEach(function(doc) { " +
-//                "num += 1; " + " }); " +
-//                "return {properties: num};}";
-//
-//        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
-//                "function(){ " +
-//                        "for (var album in this.albums) { " +
-//                        "emit({band: this.name}, 1); " +
-//                        "} " +
-//                        "}",
-//                "function(key, values){ " +
-//                        "var sum = 0; " +
-//                        "for (var i in values) { " +
-//                        "sum += values[i]; " +
-//                        "} " +
-//                        "return sum; }",
-//                null, MapReduceCommand.OutputType.INLINE, null));
-//
-//
-//        //MapReduceCommand cmd = new MapReduceCommand(properties, map, reduce, null, MapReduceCommand.OutputType.INLINE, null);
-//        //MapReduceOutput out = properties.mapReduce(cmd);
-//
-//        System.out.println("Mapreduce results");
-//        for (DBObject o : out.results()) {
-//            System.out.println(o.toString());
-//        }
-//    }
+        String reduce = "function( key, values) { " +
+                "var num = 0; " +
+                "values.forEach(function(doc) { " +
+                "num += 1; " + " }); " +
+                "return {properties: num};}";
+
+        MapReduceOutput out = bands.mapReduce(new MapReduceCommand(bands,
+                "function(){ " +
+                        "for (var album in this.albums) { " +
+                        "emit({band: this.name}, 1); " +
+                        "} " +
+                        "}",
+                "function(key, values){ " +
+                        "var sum = 0; " +
+                        "for (var i in values) { " +
+                        "sum += values[i]; " +
+                        "} " +
+                        "return sum; }",
+                null, MapReduceCommand.OutputType.INLINE, null));
+
+
+        //MapReduceCommand cmd = new MapReduceCommand(properties, map, reduce, null, MapReduceCommand.OutputType.INLINE, null);
+        //MapReduceOutput out = properties.mapReduce(cmd);
+
+        System.out.println("Mapreduce results");
+        for (DBObject o : out.results()) {
+            System.out.println(o.toString());
+        }
+    }
 
 
 }

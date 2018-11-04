@@ -21,7 +21,9 @@ public class MongoDriver {
 //
 
         System.out.println("Second read all");
-        c.getCarById("2");
+        //c.getCarById("2");
+
+        c.mapReduce();
 
 //        c.addCar("Declan Buckley", "t00143448", "Business Studies");
 //
