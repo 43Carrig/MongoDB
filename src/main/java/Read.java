@@ -49,7 +49,6 @@ public class Read {
 
                 MongoCRUD c = new MongoCRUD(mongoClient, database);
 
-                System.out.println("Second read all");
                 Car car = c.getCarById(tfGetById.getText());
 
                 //tfBefore.setText("");
