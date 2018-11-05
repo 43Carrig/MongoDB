@@ -39,6 +39,7 @@ public class Create {
     private JTextField tfPrice;
     private JTextField tfYear;
     private JTextField tfModel;
+    private JCheckBox chkIsSold;
 
 
     public Create() {
@@ -54,8 +55,9 @@ public class Create {
 
                 System.out.println("First read all");
 
-                c.addCar(tfCarId.getText(), tfCarRegistration.getText(), tfSold.getText(), tfCarMake.getText(), tfModel.getText(),
-                        tfYear.getText(), tfPrice.getText(), tfFuelType.getText(), tfEngineSizeCC.getText(), tfTransmission.getText(), tfColor.getText(), tfNumberOfDoors.getText());
+                Car car = new Car(tfCarId.getText(), tfCarRegistration.getText(), chkIsSold.isSelected(), tfCarMake.getText(), tfModel.getText(), tfYear.getText(), tfPrice.getText(), tfFuelType.getText(), tfEngineSizeCC.getText(), tfTransmission.getText(), tfColor.getText(), tfNumberOfDoors.getText());
+
+                c.addCar(car);
 
             }
         });

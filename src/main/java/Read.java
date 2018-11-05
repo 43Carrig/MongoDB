@@ -28,7 +28,7 @@ public class Read {
     private JTextField tfTransmission;
     private JTextField tfEngineSizeCC;
     private JTextField tfCarId;
-    private JTextField tfIsSold;
+    private JCheckBox chkIsSold;
     private JTextField tfCarRegistration;
     private JTextField tfCarMake;
     private JTextField tfFuelType;
@@ -51,7 +51,22 @@ public class Read {
                 MongoCRUD c = new MongoCRUD(mongoClient, database);
 
                 System.out.println("Second read all");
-                c.getCarById(tfGetById.getText());
+                Car car = c.getCarById(tfGetById.getText());
+
+                tfBefore.setText("");
+                tfCarId.setText(car.getCarId());
+                tfColor.setText(car.getColor());
+                tfTransmission.setText(car.getTransmission());
+                tfEngineSizeCC.setText(car.getEngineSizeCC());
+                chkIsSold.setSelected(car.getIsSold());
+                tfCarRegistration.setText(car.getCarRegistration());
+                tfCarMake.setText(car.getCarMake());
+                tfFuelType.setText(car.getFuelType());
+                tfPrice.setText(car.getPrice());
+                tfModel.setText(car.getCarModel());
+                tfYear.setText(car.getYear());
+                tfNumberOfDoors.setText(car.getNumberOfDoors());
+
             }
         });
     }

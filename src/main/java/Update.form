@@ -18,7 +18,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Before"/>
+              <text value="Get by ID"/>
             </properties>
           </component>
           <component id="a1ebf" class="javax.swing.JLabel" binding="lblCarId">
@@ -133,17 +133,17 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="88fa4" class="javax.swing.JTextField" binding="tfBefore">
+          <component id="88fa4" class="javax.swing.JTextField" binding="tfGetByID">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <editable value="false"/>
+              <editable value="true"/>
             </properties>
           </component>
-          <component id="7a7e1" class="javax.swing.JTextField" binding="tfAfter">
+          <component id="7a7e1" class="javax.swing.JTextField" binding="tfObjectID">
             <constraints>
               <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -159,7 +159,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="aaaed" class="javax.swing.JTextField" binding="tfNumberOfDoors">
             <constraints>
@@ -167,15 +169,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
-          </component>
-          <component id="54b2e" class="javax.swing.JTextField" binding="tfIsSold">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="2e7fd" class="javax.swing.JTextField" binding="tfColor">
             <constraints>
@@ -183,7 +179,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="63ca1" class="javax.swing.JTextField" binding="tfCarRegistration">
             <constraints>
@@ -191,7 +189,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="c34a4" class="javax.swing.JTextField" binding="tfCarMake">
             <constraints>
@@ -199,7 +199,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="285bf" class="javax.swing.JTextField" binding="tfEngineSizeCC">
             <constraints>
@@ -207,7 +209,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="5675e" class="javax.swing.JTextField" binding="tfTransmission">
             <constraints>
@@ -215,7 +219,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="8932b" class="javax.swing.JTextField" binding="tfModel">
             <constraints>
@@ -223,7 +229,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="121e9" class="javax.swing.JTextField" binding="tfFuelType">
             <constraints>
@@ -231,7 +239,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="3f9c4" class="javax.swing.JTextField" binding="tfYear">
             <constraints>
@@ -239,7 +249,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="4fe27" class="javax.swing.JTextField" binding="tfPrice">
             <constraints>
@@ -247,7 +259,18 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
+          </component>
+          <component id="8e9c" class="javax.swing.JCheckBox" binding="chkIsSold">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="false"/>
+              <text value="Sold"/>
+            </properties>
           </component>
         </children>
       </grid>
@@ -259,7 +282,14 @@
           <component id="97ebb" class="javax.swing.JButton" binding="btnUpdate">
             <constraints/>
             <properties>
+              <enabled value="false"/>
               <text value="Update Car Details"/>
+            </properties>
+          </component>
+          <component id="1fee3" class="javax.swing.JButton" binding="btnGetByID">
+            <constraints/>
+            <properties>
+              <text value="Get Car Info"/>
             </properties>
           </component>
         </children>

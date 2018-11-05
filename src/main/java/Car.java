@@ -1,11 +1,14 @@
+import org.bson.types.ObjectId;
+
+import javax.print.DocFlavor;
 import java.util.List;
 
 public class Car {
 
-    private String _id;
-    private String _rev;
+    private ObjectId _id;
+    private String carId;
+    private String carRegistration;
     private Boolean isSold;
-    private String registration;
     private String carMake;
     private String carModel;
     private String year;
@@ -16,27 +19,13 @@ public class Car {
     private String color;
     private String numberOfDoors;
 
-    public Car()
-    {
-
+    public Car() {
     }
 
-    public Car(String _id) {
-
-        this._id = _id;
-    }
-
-    public Car(String _id, Boolean isSold,String registration)
-    {
-        this._id = _id;
+    public Car(String carId, String carRegistration, Boolean isSold, String carMake, String carModel, String year, String price, String fuelType, String engineSizeCC, String transmission, String color, String numberOfDoors) {
+        this.carId = carId;
+        this.carRegistration = carRegistration;
         this.isSold = isSold;
-        this.registration = registration;
-    }
-
-    public Car(String _id, Boolean isSold, String registration, String carMake, String carModel, String year, String price, String fuelType, String engineSizeCC, String transmission, String color, String numberOfDoors) {
-        this._id = _id;
-        this.isSold = isSold;
-        this.registration = registration;
         this.carMake = carMake;
         this.carModel = carModel;
         this.year = year;
@@ -46,6 +35,38 @@ public class Car {
         this.transmission = transmission;
         this.color = color;
         this.numberOfDoors = numberOfDoors;
+    }
+
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
+    }
+
+    public String getCarRegistration() {
+        return carRegistration;
+    }
+
+    public void setCarRegistration(String carRegistration) {
+        this.carRegistration = carRegistration;
+    }
+
+    public Boolean getIsSold() {
+        return isSold;
+    }
+
+    public void setIsSold(Boolean sold) {
+        isSold = sold;
     }
 
     public String getCarMake() {
@@ -118,57 +139,5 @@ public class Car {
 
     public void setNumberOfDoors(String numberOfDoors) {
         this.numberOfDoors = numberOfDoors;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
-    public String get_rev() {
-        return _rev;
-    }
-
-    public void set_rev(String _rev) {
-        this._rev = _rev;
-    }
-
-    public Boolean getSold() {
-        return isSold;
-    }
-
-    public void setSold(Boolean sold) {
-        this.isSold = sold;
-    }
-
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String registration) {
-        this.registration = registration;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "_id='" + _id + '\'' +
-                ", _rev='" + _rev + '\'' +
-                ", isSold=" + isSold +
-                ", registration='" + registration + '\'' +
-                ", carMake='" + carMake + '\'' +
-                ", carModel='" + carModel + '\'' +
-                ", year='" + year + '\'' +
-                ", price='" + price + '\'' +
-                ", fuelType='" + fuelType + '\'' +
-                ", engineSizeCC='" + engineSizeCC + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", color='" + color + '\'' +
-                ", numberOfDoors='" + numberOfDoors + '\'' +
-                '}';
     }
 }

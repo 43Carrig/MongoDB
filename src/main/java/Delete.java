@@ -1,3 +1,6 @@
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +22,13 @@ public class Delete {
         btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                MongoClient mongoClient = new MongoClient("localhost", 27017);
 
+                MongoDatabase database = mongoClient.getDatabase("testCarDb");
+
+                MongoCRUD c = new MongoCRUD(mongoClient, database);
+
+                c.deleteCar(tfEnter.getText());
             }
         });
     }

@@ -6,9 +6,13 @@ import com.mongodb.client.MongoDatabase;
 public class MongoDriver {
     public static void main(String[] args) {
 
+        // Connecting to the mongodb server
         MongoClient mongoClient = new MongoClient("localhost", 27017);
-
+        // Connecting to the database
         MongoDatabase database = mongoClient.getDatabase("testCarDb");
+
+
+
 
         MongoCRUD c = new MongoCRUD(mongoClient, database);
 
