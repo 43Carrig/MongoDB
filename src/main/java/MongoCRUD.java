@@ -71,7 +71,7 @@ public class MongoCRUD {
 
 
 
-    public Car getCarById(String carId) { //read/ getCarById/ get
+    public Car getCarById(String carId) { //read/ get
         try {
             MongoClient myClient = new MongoClient("localhost", 27017);
             MongoDatabase database = myClient.getDatabase(DATABASE);
@@ -79,23 +79,14 @@ public class MongoCRUD {
             collection = collection.withCodecRegistry(pojoCodecRegistry);
 
             return collection.find(eq("carId", carId)).first();
-
-            /*Car result = null;
-
-            FindIterable<Car> iter = mongoClient
-                    .getDatabase(DATABASE)
-                    .getCollection("cars", Car.class).find(eq("Car ID", carId))
-                    .limit(1);// Only get one
-
-            return iter.first();*/
-
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return null;
     }
 
-    public void updateCarDetails(Car car) { //updateCarDetails / put / update
+    public void updateCarDetails(Car car) { // put / update
 
         try {
             MongoClient myClient = new MongoClient("localhost", 27017);
@@ -135,8 +126,6 @@ public class MongoCRUD {
         }
     }
 
-    //**********
-
     public ArrayList<String> mapReduce()
     {
         ArrayList<String> values = new ArrayList<>();
@@ -164,5 +153,4 @@ public class MongoCRUD {
         }
         return values;
     }
-
 }
