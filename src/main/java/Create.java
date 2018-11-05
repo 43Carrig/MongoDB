@@ -18,15 +18,11 @@ public class Create {
     private JLabel lblEngineSizeCC;
     private JLabel lblTransmission;
     private JLabel lblColor;
-    private JLabel lblBefore;
     private JLabel lblNumberOfDoors;
-    private JLabel lblAfter;
     private JPanel bottom;
     private JButton btnCreate;
     private JPanel right;
     private JLabel lblSold;
-    private JTextField tfBefore;
-    private JTextField tfAfter;
     private JTextField tfNumberOfDoors;
     private JTextField tfCarId;
     private JTextField tfColor;

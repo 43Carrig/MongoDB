@@ -10,13 +10,9 @@ public class Delete {
     private JPanel left;
     private JPanel right;
     private JPanel bottom;
-    private JLabel lblBefore;
     private JLabel lblGetText;
-    private JLabel lblAfter;
     private JButton btnDelete;
-    private JTextField tfBefore;
     private JTextField tfEnter;
-    private JTextField tfAfter;
 
     public Delete() {
         btnDelete.addActionListener(new ActionListener() {

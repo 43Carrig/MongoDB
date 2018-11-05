@@ -79,7 +79,7 @@ public class MongoCRUD {
             collection = collection.withCodecRegistry(pojoCodecRegistry);
 
             return collection.find(eq("carId", carId)).first();
-            
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

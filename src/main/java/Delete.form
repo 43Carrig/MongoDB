@@ -7,71 +7,36 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="24a31" binding="left" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="24a31" binding="left" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="West"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a17ce" class="javax.swing.JLabel" binding="lblBefore">
+          <component id="b7dc2" class="javax.swing.JLabel" binding="lblGetText">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Before:"/>
-            </properties>
-          </component>
-          <component id="b7dc2" class="javax.swing.JLabel" binding="lblGetText">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
+              <font size="28"/>
               <text value="Enter ID:"/>
-            </properties>
-          </component>
-          <component id="cbdd7" class="javax.swing.JLabel" binding="lblAfter">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="After:"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="ea98f" binding="right" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="ea98f" binding="right" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="East"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="9af5d" class="javax.swing.JTextField" binding="tfBefore">
+          <component id="29cd8" class="javax.swing.JTextField" binding="tfEnter">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties>
-              <editable value="false"/>
-            </properties>
-          </component>
-          <component id="29cd8" class="javax.swing.JTextField" binding="tfEnter">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
             <properties/>
-          </component>
-          <component id="7353a" class="javax.swing.JTextField" binding="tfAfter">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <editable value="false"/>
-            </properties>
           </component>
         </children>
       </grid>

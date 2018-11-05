@@ -10,7 +10,6 @@ public class Read {
     private JPanel left;
     private JPanel Right;
     private JPanel Bottom;
-    private JLabel lblBefore;
     private JLabel lblID;
     private JLabel lblIsSold;
     private JLabel lblRegistration;

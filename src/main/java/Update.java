@@ -12,7 +12,6 @@ public class Update {
     private JPanel bottom;
     private JButton btnUpdate;
     private JTextField tfGetByID;
-    private JTextField tfObjectID;
     private JTextField tfCarId;
     private JTextField tfNumberOfDoors;
     private JTextField tfIsSold;
@@ -38,7 +37,6 @@ public class Update {
     private JLabel lblTransmission;
     private JLabel lblColor;
     private JLabel lblNumberOfDoors;
-    private JLabel lblAfter;
     private JButton btnGetByID;
     private JCheckBox chkIsSold;
 
