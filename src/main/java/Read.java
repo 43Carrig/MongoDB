@@ -52,7 +52,7 @@ public class Read {
                 System.out.println("Second read all");
                 Car car = c.getCarById(tfGetById.getText());
 
-                tfBefore.setText("");
+                //tfBefore.setText("");
                 tfCarId.setText(car.getCarId());
                 tfColor.setText(car.getColor());
                 tfTransmission.setText(car.getTransmission());
